@@ -22,6 +22,10 @@
 
     - "Attribution modeling is a way to understand and analyze the various marketing  channels or touchpoints that contribute to a desired action, such as a product sale, sign-up, or any other conversion. It helps determine which marketing efforts or channels impact the customer’s decision-making process most."
 
+    - Click through rate
+    - recommendation on the basis of time spent on a particular end point 
+    - best place to put marketting and promotional adds on your website and the click through rate and churn rate
+
 --- 
 ## But how am i gonna make this shit work?
 
