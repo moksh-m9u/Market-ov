@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Attribution & Budget Optimization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Marketing Attribution</h1>
+                <p class="subtitle">Markov Chain Attribution Modeling & Budget Optimization</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Step 1: Run Attribution Models -->
+            <section class="glass-card">
+                <div class="card-header">
+                    <h2>01 / Attribution Analysis</h2>
+                    <p>Analyze marketing channel effectiveness using multiple attribution models</p>
+                </div>
+                <button id="runAttribution" class="btn btn-primary">
+                    <span class="btn-text">Run Attribution Models</span>
+                    <span class="loader" style="display: none;"></span>
+                </button>
+            </section>
+
+            <!-- Analytics Overview -->
+            <section class="glass-card" id="analyticsSection" style="display: none;">
+                <div class="card-header">
+                    <h2>Campaign Analytics</h2>
+                </div>
+                <div class="analytics-grid" id="analyticsGrid"></div>
+            </section>
+
+            <!-- Results Display -->
+            <section class="glass-card" id="resultsSection" style="display: none;">
+                <div class="card-header">
+                    <h2>Attribution Results</h2>
+                </div>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="table">
+                        <span class="tab-icon">▦</span>
+                        <span>Table View</span>
+                    </button>
+                    <button class="tab-btn" data-tab="chart">
+                        <span class="tab-icon">▨</span>
+                        <span>Chart View</span>
+                    </button>
+                    <button class="tab-btn" data-tab="comparison">
+                        <span class="tab-icon">▤</span>
+                        <span>Comparison</span>
+                    </button>
+                    <button class="tab-btn" data-tab="channelStats">
+                        <span class="tab-icon">▥</span>
+                        <span>Channel Stats</span>
+                    </button>
+                </div>
+
+                <div id="tableView" class="tab-content active">
+                    <div class="table-container">
+                        <table id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>Last Touch</th>
+                                    <th>First Touch</th>
+                                    <th>Last Non-Direct</th>
+                                    <th>Linear</th>
+                                    <th>U-Shaped</th>
+                                    <th>Position Decay</th>
+                                    <th>Markov</th>
+                                    <th class="highlight">Mean</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="chartView" class="tab-content">
+                    <div class="chart-container">
+                        <canvas id="attributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div id="comparisonView" class="tab-content">
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <div id="channelStatsView" class="tab-content">
+                    <div class="table-container">
+                        <table id="channelStatsTable">
+                            <thead>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>Interactions</th>
+                                    <th>Conversions</th>
+                                    <th>Conv. Rate</th>
+                                    <th>Avg Value</th>
+                                    <th>Attribution</th>
+                                </tr>
+                            </thead>
+                            <tbody id="channelStatsBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="chart-container" style="margin-top: 30px;">
+                        <canvas id="channelPerformanceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Budget Optimization -->
+            <section class="glass-card" id="budgetSection" style="display: none;">
+                <div class="card-header">
+                    <h2>02 / Budget Optimization</h2>
+                    <p>Optimize budget allocation across marketing channels</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="totalBudget">Total Campaign Budget</label>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">$</span>
+                        <input type="number" id="totalBudget" value="10000" min="100" step="100">
+                    </div>
+                </div>
+
+                <div id="channelLimits" class="channel-limits">
+                    <h3>Channel Budget Limits</h3>
+                    <p class="help-text">Optional: Set maximum budget limits for each channel</p>
+                </div>
+
+                <button id="optimizeBudget" class="btn btn-success">
+                    <span class="btn-text">Optimize Budget</span>
+                    <span class="loader" style="display: none;"></span>
+                </button>
+            </section>
+
+            <!-- Budget Results -->
+            <section class="glass-card" id="budgetResultsSection" style="display: none;">
+                <div class="card-header">
+                    <h2>Optimized Allocation</h2>
+                </div>
+                <div id="budgetResults" class="budget-results"></div>
+                <div class="chart-container">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>Markov Chain Attribution Modeling System</p>
+            <p class="footer-sub">ML & DBMS Project</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
